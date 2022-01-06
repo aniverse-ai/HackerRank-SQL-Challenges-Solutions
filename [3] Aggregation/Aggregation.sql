@@ -81,47 +81,97 @@ SELECT CEIL( AVG(salary)- AVG(REPLACE(salary,'0','')) )
 FROM employees;
 -- -----------------------------------------------------------------------------------------------------------------------
 /*
-[] 
+[8] Weather Observation Station 2
+Query the following two values from the STATION table:
 
+The sum of all values in LAT_N rounded to a scale of  decimal places.
+The sum of all values in LONG_W rounded to a scale of  decimal places.
 */
+SELECT ROUND(SUM(lat_n),2), ROUND(SUM(long_w),2) FROM station;
 -- -----------------------------------------------------------------------------------------------------------------------
 /*
-[] 
+[9] Weather Observation Station 13
+Query the sum of Northern Latitudes (LAT_N) from STATION having values greater than  and less than . Truncate your answer
+ to  decimal places.
+*/
+SELECT ROUND(SUM(lat_n),4) FROM station
+WHERE lat_n > 38.7800 AND lat_n < 137.2345;
+-- -----------------------------------------------------------------------------------------------------------------------
+/*
+[10] Weather Observation Station 14
+Query the greatest value of the Northern Latitudes (LAT_N) from STATION that is less than . Truncate your answer to  decimal places.
+
+Input Format
+
+The STATION table is described as follows:
+*/
+SELECT ROUND(MAX(lat_n),4) FROM station
+WHERE lat_n < 137.2345;
+-- -----------------------------------------------------------------------------------------------------------------------
+/*
+[11***] Weather Observation Station 15
+Query the Western Longitude (LONG_W) for the largest Northern Latitude (LAT_N) in STATION that is less than . Round your
+ answer to  decimal places.
+*/
+SELECT ROUND((long_w),4) FROM station
+WHERE lat_n = (
+SELECT MAX(lat_n) FROM station
+WHERE lat_n < 137.2345);
+
+SELECT ROUND(LONG_W, 4)
+FROM STATION
+WHERE LAT_N < 137.2345
+ORDER BY LAT_N DESC
+LIMIT 1;
+-- -----------------------------------------------------------------------------------------------------------------------
+/*
+[12] Weather Observation Station 16 
+Query the smallest Northern Latitude (LAT_N) from STATION that is greater than . Round your answer to  decimal places.
+*/
+SELECT ROUND(MIN(lat_n),4) FROM station 
+WHERE lat_n > 38.7780;
+-- -----------------------------------------------------------------------------------------------------------------------
+/*
+[13] Weather Observation Station 16  
+Query the Western Longitude (LONG_W)where the smallest Northern Latitude (LAT_N) in STATION is greater than . Round your 
+answer to  decimal places.
+*/
+SELECT ROUND(long_w,4) FROM station
+WHERE lat_n > 38.7780 
+ORDER BY lat_n LIMIT 1;
+-- -----------------------------------------------------------------------------------------------------------------------
+/*
+[14] Weather Observation Station 18
+Consider  and  to be two points on a 2D plane.
+
+ happens to equal the minimum value in Northern Latitude (LAT_N in STATION).
+ happens to equal the minimum value in Western Longitude (LONG_W in STATION).
+ happens to equal the maximum value in Northern Latitude (LAT_N in STATION).
+ happens to equal the maximum value in Western Longitude (LONG_W in STATION).
+Query the Manhattan Distance between points  and  and round it to a scale of  decimal places.
+*/
+SELECT ROUND( (MAX(LAT_N) - MIN(LAT_N)) + (MAX(LONG_W) - MIN(LONG_W)), 4)
+FROM STATION;
+-- -----------------------------------------------------------------------------------------------------------------------
+/*
+[15] Weather Observation Station 19
+Consider  and  to be two points on a 2D plane where  are the respective minimum and maximum values of Northern Latitude (LAT_N) and  are the respective minimum and maximum values of Western Longitude (LONG_W) in STATION.
+
+Query the Euclidean Distance between points  and  and format your answer to display  decimal digits.
+
+Input Format
+
+The STATION table is described as follows:
+*/
+SELECT ROUND( SQRT( POWER(MAX(LAT_N)-MIN(LAT_N),2) + POWER(MAX(LONG_W)-MIN(LONG_W),2) ),4)
+FROM STATION;
+-- -----------------------------------------------------------------------------------------------------------------------
+/*
 
 */
 
 -- -----------------------------------------------------------------------------------------------------------------------
-/*
-[] 
 
-*/
 
--- -----------------------------------------------------------------------------------------------------------------------
-/*
-[] 
 
-*/
-
--- -----------------------------------------------------------------------------------------------------------------------
-/*
-[] 
-
-*/
-
--- -----------------------------------------------------------------------------------------------------------------------
-/*
-[] 
-
-*/
--- -----------------------------------------------------------------------------------------------------------------------
-/*
-[] 
-
-*/
-
--- -----------------------------------------------------------------------------------------------------------------------
-/*
-[] 
-
-*/
 
